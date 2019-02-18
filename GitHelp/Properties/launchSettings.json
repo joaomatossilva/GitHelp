@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "GitHelp": {
+      "commandName": "Project",
+      "commandLineArgs": "outro",
+      "workingDirectory": "C:\\JMS\\Repository\\DateTimeExtensions"
+    }
+  }
+}
