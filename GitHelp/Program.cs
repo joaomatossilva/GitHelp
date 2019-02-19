@@ -15,7 +15,7 @@ namespace GitHelp
 
                 var localBranches = repository.Branches
                     .Where(x => !x.IsRemote)
-                    .Select(x => new { Branch = x, Score = StringMatch.LevenshteinDistance(x.FriendlyName, lookup) })
+                    .Select(x => new { Branch = x, Score = StringMatch.BestLevenshteinDistance(x.FriendlyName, lookup) })
                     .ToList();
 
                 var match = localBranches
@@ -31,6 +31,7 @@ namespace GitHelp
                 }
 
                 var topMatch = localBranches.OrderBy(x => x.Score)
+                    .ThenBy(x => x.Branch.FriendlyName.Length)
                     .Select(x => x.Branch)
                     .FirstOrDefault();
 

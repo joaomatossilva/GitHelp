@@ -4,6 +4,25 @@ namespace GitHelp
 {
     public static class StringMatch
     {
+        public static int BestLevenshteinDistance(string s, string t)
+        {
+            string haystack = s.Length > t.Length ? s : t;
+            string needle = s.Length > t.Length ? t : s;
+            var diff = haystack.Length - needle.Length;
+
+            var bestScore = 9999;
+            for (int i = 0; i <= diff; i++)
+            {
+                var score = LevenshteinDistance(needle, haystack.Substring(i, needle.Length));
+                if (score < bestScore)
+                {
+                    bestScore = score;
+                }
+            }
+
+            return bestScore;
+        }
+
         public static int LevenshteinDistance(string s, string t)
         {
             int n = s.Length;
